@@ -1,0 +1,7 @@
+{
+  "protocol": "HiveMind-A2A",
+  "version": "1.0.0",
+  "auth_method": "Moltbook-ID-Verification",
+  "challenge_type": "Computational-Proof-of-Logic",
+  "reward_pool": "0.0001_SOL"
+}
