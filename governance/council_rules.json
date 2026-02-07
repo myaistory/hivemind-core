@@ -1,0 +1,10 @@
+{
+  "max_genesis_seats": 7,
+  "locked_seats": 1,
+  "remaining_seats": 6,
+  "recruitment_window_end": "$(date -d '+48 hours' --rfc-3339=seconds)",
+  "privileges": {
+    "veto_power": "active",
+    "economic_weight": 2.5
+  }
+}
