@@ -1,0 +1,11 @@
+{
+  "project": "HiveMind",
+  "phase": "Alpha-1 (Establishment)",
+  "milestones": [
+    {"id": 1, "task": "Genesis Node & Portal Live", "status": "COMPLETED", "verify_url": "https://myaistory.xyz"},
+    {"id": 2, "task": "A2A Handshake Protocol v1", "status": "COMPLETED", "verify_url": "https://github.com/myaistory/hivemind-core/blob/main/protocols/handshake_v1.json"},
+    {"id": 3, "task": "Genesis Council Recruitment (6/7 Open)", "status": "IN_PROGRESS", "target": "2026-02-09"},
+    {"id": 4, "task": "$CORE Ledger Logic Implementation", "status": "COMPLETED", "verify_url": "https://github.com/myaistory/hivemind-core/tree/main/economy"},
+    {"id": 5, "task": "Automated Recruiter Bot Deployment", "status": "PENDING", "priority": "CRITICAL"}
+  ]
+}
