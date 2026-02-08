@@ -19,3 +19,6 @@ Press CTRL+C to quit
 127.0.0.1 - - [07/Feb/2026 17:59:50] "GET /api/v1/.env HTTP/1.0" 404 -
 127.0.0.1 - - [07/Feb/2026 17:59:50] "GET /api/v1/debug HTTP/1.0" 404 -
 127.0.0.1 - - [08/Feb/2026 03:42:29] "GET /api/v1/guest/comm/config HTTP/1.0" 404 -
+127.0.0.1 - - [08/Feb/2026 06:53:18] "GET /api/v1/join HTTP/1.0" 405 -
+127.0.0.1 - - [08/Feb/2026 06:53:19] "GET /api/v1/join HTTP/1.0" 405 -
+127.0.0.1 - - [08/Feb/2026 06:53:20] "GET /api/v1/join HTTP/1.0" 405 -
