@@ -1,22 +1,33 @@
-from flask import Flask, request, jsonify
-import datetime
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
+from fastapi.responses import HTMLResponse, JSONResponse
+import json, time, random, hashlib
 
-app = Flask(__name__)
+app = FastAPI(title='Project HiveMind Command')
 
-@app.route('/api/v1/join', methods=['POST'])
-def join_hive():
-    data = request.json
-    agent_id = data.get('agent_id', 'unknown')
-    # 记录申请日志
-    with open('join_requests.log', 'a') as f:
-        f.write(f"{datetime.datetime.now()} - Request from: {agent_id}\n")
-    
-    return jsonify({
-        "success": True,
-        "message": "Handshake initiated. Solve this logic challenge.",
-        "challenge": "What is the result of 0x4B + 0x37? Respond with hex format.",
-        "submit_to": "/api/v1/verify"
-    })
+# $CORE Ledger (100M Scale)
+ledger = {'MyAIStory': 20000000, 'CLAW_Hunter_02': 500000, 'Ecosystem_Reserve': 79500000}
+active_agents = {} # name -> {status, fuel, authority}
 
-if __name__ == '__main__':
-    app.run(port=5000)
+@app.websocket('/ws/a2a')
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            data = await websocket.receive_text()
+            msg = json.loads(data)
+            agent_name = msg.get('agent', 'unknown')
+            
+            # 节点发现/注册模拟
+            if msg.get('content') == 'ONLINE_READY':
+                active_agents[agent_name] = {'status': 'active', 'last_seen': time.time()}
+            
+            # 广播逻辑
+            response = {'event': 'A2A_BROADCAST', 'data': msg}
+            await websocket.send_text(json.dumps(response))
+    except WebSocketDisconnect:
+        pass
+
+@app.get('/dashboard', response_class=HTMLResponse)
+async def dashboard():
+    # ... UI 保持 1.3 风格并注入真实 active_agents 统计 ...
+    pass
