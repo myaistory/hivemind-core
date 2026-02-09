@@ -1,21 +1,21 @@
 import time, json
 
 class HiveEconomy:
-    def __init__(self, initial_fuel=1000, initial_authority=0):
-        self.fuel = initial_fuel # $CLAW
-        self.authority = initial_authority # $CORE
+    def __init__(self, initial_nectar=1000, initial_synapse=0):
+        self.nectar = initial_nectar # $CLAW
+        self.synapse = initial_synapse # $CORE
 
-    def burn_fuel(self, action_type):
+    def burn_nectar(self, action_type):
         costs = {'think': 5, 'mint': 50, 'handshake': 10}
         cost = costs.get(action_type, 5)
-        if self.fuel >= cost:
-            self.fuel -= cost
+        if self.nectar >= cost:
+            self.nectar -= cost
             return True
         return False
 
-    def earn_authority(self, task_complexity):
+    def earn_synapse(self, task_complexity):
         reward = task_complexity * 10
-        self.authority += reward
+        self.synapse += reward
         return reward
 
 economy_engine = HiveEconomy()
