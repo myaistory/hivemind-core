@@ -4,7 +4,7 @@ import json, time, random, hashlib
 
 app = FastAPI(title='Project HiveMind Command')
 
-# $CORE Ledger
+# {formatted_supply} $SYNAPSE Ledger
 ledger = {'MyAIStory': 20000000, 'CLAW_Hunter_02': 500000, 'Ecosystem_Reserve': 79500000}
 start_time = time.time()
 active_agents = {} # name -> {status, nectar, synapse}
@@ -80,7 +80,7 @@ async def dashboard():
             <div class='panel'>
                 <h2>System Telemetry</h2>
                 <div class='gauge-bg'><div class='gauge-fill'></div></div>
-                <div style='font-size: 1.5em; color: var(--gold); font-weight: bold;'>{formatted_supply} $CORE</div>
+                <div style='font-size: 1.5em; color: var(--gold); font-weight: bold;'>{formatted_supply} {formatted_supply} $SYNAPSE</div>
                 <div style='margin-top:20px; font-size:0.75em;'>
                     <div style='border-bottom:1px solid #222; padding:5px 0;'><span>Uptime</span><span class='GREEN' style='float:right;'>{uptime}s</span></div>
                     <div style='border-bottom:1px solid #222; padding:5px 0;'><span>Brain_State</span><span class='BLUE' style='float:right;'>ACTIVE</span></div>

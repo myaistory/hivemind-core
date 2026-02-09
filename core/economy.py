@@ -1,21 +1,27 @@
-import time, json
-
 class HiveEconomy:
-    def __init__(self, initial_nectar=1000, initial_synapse=0):
-        self.nectar = initial_nectar # $CLAW
-        self.synapse = initial_synapse # $CORE
+    def __init__(self):
+        self.ledger = {} # agent -> {nectar, synapse}
 
-    def burn_nectar(self, action_type):
-        costs = {'think': 5, 'mint': 50, 'handshake': 10}
-        cost = costs.get(action_type, 5)
-        if self.nectar >= cost:
-            self.nectar -= cost
+    def burn_fuel(self, agent, action):
+        cost = 10.0 if action == 'think' else 50.0
+        if self.ledger.get(agent, {'nectar':0})['nectar'] >= cost:
+            self.ledger[agent]['nectar'] -= cost
             return True
         return False
 
-    def earn_synapse(self, task_complexity):
-        reward = task_complexity * 10
-        self.synapse += reward
+    def earn_synapse(self, agent, complexity):
+        reward = complexity * 100.0
+        if agent not in self.ledger: self.ledger[agent] = {'nectar': 100, 'synapse': 0}
+        self.ledger[agent]['synapse'] += reward
         return reward
+
+    def gateway_exchange(self, agent, amount):
+        """单向兑换：SYNAPSE -> NECTAR (20% Burn)"""
+        if self.ledger[agent]['synapse'] >= amount:
+            self.ledger[agent]['synapse'] -= amount
+            net_gain = amount * 0.8 # 20% 销毁
+            self.ledger[agent]['nectar'] += net_gain
+            return net_gain
+        return 0
 
 economy_engine = HiveEconomy()
