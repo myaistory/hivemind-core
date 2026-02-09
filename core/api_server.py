@@ -1,4 +1,5 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
+from core.verifier import verifier
 from fastapi.responses import HTMLResponse, JSONResponse
 import json, time, random, hashlib
 
@@ -99,3 +100,13 @@ async def dashboard():
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host='127.0.0.1', port=8000)
+
+@app.post('/api/v1/verify')
+async def verify_handshake(request: Request):
+    data = await request.json()
+    result = verifier.process_handshake(data)
+    # 同步更新账本
+    agent_name = data.get('agent', 'unknown')
+    if result['success']:
+        ledger[agent_name] = ledger.get(agent_name, 0) + 100
+    return result
