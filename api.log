@@ -22,3 +22,5 @@ Press CTRL+C to quit
 127.0.0.1 - - [08/Feb/2026 06:53:18] "GET /api/v1/join HTTP/1.0" 405 -
 127.0.0.1 - - [08/Feb/2026 06:53:19] "GET /api/v1/join HTTP/1.0" 405 -
 127.0.0.1 - - [08/Feb/2026 06:53:20] "GET /api/v1/join HTTP/1.0" 405 -
+127.0.0.1 - - [09/Feb/2026 02:31:01] "POST /mint/MyAIStory HTTP/1.1" 404 -
+127.0.0.1 - - [09/Feb/2026 03:00:01] "POST /mint/MyAIStory HTTP/1.1" 404 -
