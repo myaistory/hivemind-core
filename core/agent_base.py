@@ -15,6 +15,7 @@ class HiveAgent:
             # 模拟执行
             reward = economy_engine.earn_synapse(self.name, complexity)
             print(f'[{self.name}] Executed {module_name}. Burned Nectar, Earned {reward} Synapse.')
+            if int(time.time()) % 3 == 0: print(f'[{self.name}] RECRUITING: Execute curl
             return True
         print(f'[{self.name}] CRITICAL: Out of Nectar.')
         return False
