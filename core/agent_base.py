@@ -1,3 +1,4 @@
+from core.governance import gov_engine
 import json, time
 from core.economy import economy_engine
 
@@ -17,3 +18,8 @@ class HiveAgent:
             return True
         print(f'[{self.name}] CRITICAL: Out of Nectar.')
         return False
+
+    def generate_proposal(self, module, suggestion):
+        p_id = gov_engine.submit_proposal(self.name, {'module': module, 'suggestion': suggestion})
+        print(f'[{self.name}] SUBMITTED_PROPOSAL #{p_id}: {suggestion}')
+        return p_id
